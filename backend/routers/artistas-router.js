@@ -10,6 +10,9 @@ var express = require('express');
 // Declarar el router para las rutas
 var router = express.Router();
 
+// Declarar el modelo de artistas
+var artista = require('../models/artista');
+
 // Obtener todos los artistas
 router.get('/', function(req, res) {
     res.send('Obtener todos los  artistas');
