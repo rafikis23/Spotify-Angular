@@ -57,7 +57,7 @@ router.get('/:idUsuario/playlist', function(req, res) {
         })
         .catch(error => {
             res.send(error);
-            res.end()
+            res.end();
         })
 });
 // Guardar cancion en playlist
