@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+  regionVisible:string = '';
+  verPlaylist(id){
+    this.regionVisible = 'playlists';
+  }
+  verArtista(id){
+    this.regionVisible = 'artistas';
+  }
 }
