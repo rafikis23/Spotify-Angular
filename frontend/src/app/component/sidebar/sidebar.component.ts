@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { faPlay, faMusic } from '@fortawesome/free-solid-svg-icons';
+import { ArtistasService } from '../../services/artistas.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,9 +13,10 @@ export class SidebarComponent implements OnInit {
   faPlay = faPlay;
   faMusic = faMusic;
   regionVisible:string = '';
-  constructor() { }
+  constructor(private artistasService: ArtistasService) { }
 
   ngOnInit(): void {
+    this.artistasService.obtenerArtistas();
   }
   verPlaylist(id){
     this.onVerPlaylist.emit(id);
