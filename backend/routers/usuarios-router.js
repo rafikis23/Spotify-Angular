@@ -52,7 +52,7 @@ router.get('/:idUsuario/playlist', function(req, res) {
             "playlists": true
         })
         .then(resultado => {
-            res.send(resultado);
+            res.send(resultado[0]);
             res.end();
         })
         .catch(error => {

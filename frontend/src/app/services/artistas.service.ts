@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ArtistasService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  obtenerArtistas(){
-    console.log('Obtener listados de artistas de el servidor');
+  obtenerArtistas(): Observable<any>{
+    return this.httpClient.get('http://localhost:8888/artistas', {});
   }
 }

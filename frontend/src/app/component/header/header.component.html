@@ -35,11 +35,9 @@
       </button>
     </div>
     <div class="modal-body">
-        Seleccione un usuario
-        <select class="form-control">
-            <option>Usuario 1</option>
-            <option>Usuario 2</option> 
-            <option>Usuario 3</option> 
+        <select class="form-control" [(ngModel)]="usuarioSeleccionado">
+            <option>Seleccione un usuario</option>
+            <option *ngFor="let usuario of usuarios" [ngValue]="usuario._id">{{usuario.nombreUsuario}}</option> 
         </select>
     </div>
     <div class="modal-footer">

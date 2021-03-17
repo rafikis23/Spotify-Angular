@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { faPlay, faMusic } from '@fortawesome/free-solid-svg-icons';
 import { ArtistasService } from '../../services/artistas.service';
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,19 +14,45 @@ export class SidebarComponent implements OnInit {
   faPlay = faPlay;
   faMusic = faMusic;
   regionVisible:string = '';
-  constructor(private artistasService: ArtistasService) { }
+  artistas: any = [];
+  playlists: any = [];
+  constructor(
+    private artistasService: ArtistasService,
+    private usuariosService: UsuariosService
+    ) { }
 
   ngOnInit(): void {
-    this.artistasService.obtenerArtistas();
+    // Obtener artistas
+    this.artistasService.obtenerArtistas().subscribe(
+      res => {
+        this.artistas = res;
+        console.log('Artistas: ', this.artistas);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    // Obtener playlists
   }
-  verPlaylist(id){
-    this.onVerPlaylist.emit(id);
+  verPlaylist(playlist){
+    this.onVerPlaylist.emit(playlist._id);
     // this.regionVisible = 'playlists';
   }
-  verArtista(id){
-    this.onVerArtista.emit(id);
+  verArtista(artista){
+    this.onVerArtista.emit(artista._id);
     // this.regionVisible = 'artistas';
   }
-
+  obtenerPlaylist(usuario){
+    //
+    console.log('Obtener el usuario seleccionado desde el sidebar', usuario);
+    this.usuariosService.obtenerPlaylistsUsuario(usuario).subscribe(
+      res => {
+        //this.playlists = res;
+        console.log('Playlists: ', res.playlists);
+        this.playlists = res.playlists;
+      },
+      error => console.log(error)
+    );
+  }
 
 }

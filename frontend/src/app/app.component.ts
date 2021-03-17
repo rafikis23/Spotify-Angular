@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { SidebarComponent } from './component/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @ViewChild('sidebar') sideBarComponent: SidebarComponent;
   title = 'frontend';
   regionVisible:string = '';
   verPlaylist(id){
@@ -13,5 +15,9 @@ export class AppComponent {
   }
   verArtista(id){
     this.regionVisible = 'artistas';
+  }
+  seleccionarUsuario(usuario){
+    console.log('Usuario seleccionado (AppComponent)', usuario);
+    this.sideBarComponent.obtenerPlaylist(usuario);
   }
 }
