@@ -9,16 +9,16 @@
         <app-sidebar #sidebar (onVerArtista)="verArtista($event)" (onVerPlaylist)="verPlaylist($event)"></app-sidebar>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <div id="vista-playlist" *ngIf="regionVisible == 'playlists'">
-                <app-playlist></app-playlist>
+            <div id="vista-playlist" [ngClass]="{'visible':regionVisible == 'playlists', 'no-visible':regionVisible != 'playlists'}">
+                <app-playlist #playlistComponent></app-playlist>
             </div>
-            <!--Playlist-->
+            <!--Playlist-- *ngIf="regionVisible == 'playlists'">
 
 
             <!------------------------------->
-            <!--Artista-->
-            <div id="vista-artista" *ngIf="regionVisible == 'artistas'">
-                <app-album></app-album>
+            <!--Artista-- *ngIf="regionVisible == 'artistas'"-->
+            <div id="vista-artista" [ngClass]="{'visible':regionVisible == 'artistas', 'no-visible':regionVisible != 'artistas'}">
+                <app-album #albumComponent></app-album>
             </div>
             <!--vista-artista-->
 

@@ -15,4 +15,7 @@ export class UsuariosService {
   obtenerPlaylistsUsuario(usuario): Observable<any>{
     return this.httpClient.get(`http://localhost:8888/usuarios/${usuario}/playlist`, {});
   }
+  /*obtenerPlaylistCanciones(playlist): Observable<any>{
+    // return this.httpClient.get(`http://localhost:8888/usuarios/${usuario}/playlists/${playlist}`, {});
+  }*/
 }

@@ -35,11 +35,12 @@ export class SidebarComponent implements OnInit {
     // Obtener playlists
   }
   verPlaylist(playlist){
-    this.onVerPlaylist.emit(playlist._id);
+    this.onVerPlaylist.emit(playlist);
     // this.regionVisible = 'playlists';
   }
   verArtista(artista){
     this.onVerArtista.emit(artista._id);
+    console.log('El artista seleccionado desde el Sidebar:', artista._id);
     // this.regionVisible = 'artistas';
   }
   obtenerPlaylist(usuario){
@@ -47,7 +48,7 @@ export class SidebarComponent implements OnInit {
     console.log('Obtener el usuario seleccionado desde el sidebar', usuario);
     this.usuariosService.obtenerPlaylistsUsuario(usuario).subscribe(
       res => {
-        //this.playlists = res;
+        // this.playlists = res;
         console.log('Playlists: ', res.playlists);
         this.playlists = res.playlists;
       },

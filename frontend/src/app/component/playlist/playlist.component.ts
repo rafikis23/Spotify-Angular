@@ -7,6 +7,7 @@ import { faPlay, faMusic } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./playlist.component.css']
 })
 export class PlaylistComponent implements OnInit {
+  playlist: any = {};
   faPlay = faPlay;
   faMusic = faMusic;
   regionVisible:string = '';
@@ -14,8 +15,9 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  verPlaylist(id){
-    this.regionVisible = 'playlists';
+  verPlaylist(playlist){
+    this.playlist = playlist;
+    console.log('Ver desde PlaylistComponent', playlist);
   }
 
 }

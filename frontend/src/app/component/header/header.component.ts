@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UsuariosService } from '../../services/usuarios.service';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,6 +12,8 @@ export class HeaderComponent implements OnInit {
   @Output() onSeleccionarUsuario = new EventEmitter();
   usuarios: any = [];
   usuarioSeleccionado: any;
+  faPlus = faPlus;
+  faUserFriends = faUserFriends;
   constructor(
     private modalService: NgbModal,
     private modalUsuarioService: NgbModal,

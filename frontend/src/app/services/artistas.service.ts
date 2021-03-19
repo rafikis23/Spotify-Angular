@@ -11,4 +11,7 @@ export class ArtistasService {
   obtenerArtistas(): Observable<any>{
     return this.httpClient.get('http://localhost:8888/artistas', {});
   }
+  obtenerAlbumsArtista(idArtista): Observable<any>{
+    return this.httpClient.get(`http://localhost:8888/artistas/${idArtista}/albumes`, {});
+  }
 }
