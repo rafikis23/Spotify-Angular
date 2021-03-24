@@ -39,12 +39,13 @@ export class SidebarComponent implements OnInit {
     // this.regionVisible = 'playlists';
   }
   verArtista(artista){
-    this.onVerArtista.emit(artista._id);
-    console.log('El artista seleccionado desde el Sidebar:', artista._id);
+    this.onVerArtista.emit({idArtista: artista._id, nombreArtista: artista.nombreArtista});
+    console.log('El artista seleccionado desde el Sidebar:', artista);
     // this.regionVisible = 'artistas';
   }
   obtenerPlaylist(usuario){
     //
+    this.playlists = [];
     console.log('Obtener el usuario seleccionado desde el sidebar', usuario);
     this.usuariosService.obtenerPlaylistsUsuario(usuario).subscribe(
       res => {

@@ -1,7 +1,7 @@
-<section class="container-fluid" *ngFor="let album of albums.albumes">
+<section class="container-fluid pb-5" *ngFor="let album of albums.albumes">
     <div class="row">
         <div class="col-4 text-center">
-            <div class="cover-image" style="background-image:url(../assets/{{album.caratulaAlbum}});">
+            <div class="cover-image" [style.backgroundImage]="obtenerURL(album.caratulaAlbum)">
             </div><br>
             <h5 class="text-muted">{{album.nombreAlbum}}</h5>
             <button class="btn btn-success" type="button"><fa-icon [icon]="faPlay"></fa-icon> Play</button>
@@ -15,17 +15,21 @@
                 </div>
                 <div class="col-10">
                     <div class="song-title">{{cancion.nombreCancion}}</div>
+                    <div class="song-description">{{artistaSeleccionado}} - {{album.nombreAlbum}}</div>
                 </div>
                 <div class="col-1">
                     <span>{{cancion.duracion}}</span>
-                    <button (click)="agregarPlaylist(contentAgregarPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon></button>
+                    <button (click)="agregarPlaylist(contentAgregarPlaylist, cancion, album.nombreAlbum)" class="btn btn-outline-success btn-sm" title="Agregar a playlist">
+                        <fa-icon [icon]="faPlus"></fa-icon>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+    <hr>
 </section>
 
-<hr>
+
 
 
 <!--Ventana Modal Para Agregar a Playlist -->
@@ -37,14 +41,9 @@
       </button>
     </div>
     <div class="modal-body">
-        Seleccione una playlist
-        <select class="form-control">
-            <option>Playlist 1</option>
-            <option>Playlist 2</option> 
-            <option>Playlist 3</option>
-            <option>Playlist 4</option> 
-            <option>Playlist 5</option> 
-            <option>Playlist 6</option> 
+        <select class="form-control" [(ngModel)]="playlistActual">
+            <option>Seleccione una playlist</option>
+            <option *ngFor="let playlist of playlists" [ngValue]="playlist._id">{{playlist.tituloPlaylist}}</option> 
         </select>
     </div>
     <div class="modal-footer">

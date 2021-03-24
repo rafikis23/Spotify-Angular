@@ -1,6 +1,6 @@
 <router-outlet></router-outlet>
 <!--Header -->
-<app-header (onSeleccionarUsuario)="seleccionarUsuario($event)"></app-header>
+<app-header (onAgregarPlaylist)="cargarPlaylists($event)" (onSeleccionarUsuario)="seleccionarUsuario($event)" #headerComponent></app-header>
 
 
 <div class="container-fluid">
@@ -18,7 +18,7 @@
             <!------------------------------->
             <!--Artista-- *ngIf="regionVisible == 'artistas'"-->
             <div id="vista-artista" [ngClass]="{'visible':regionVisible == 'artistas', 'no-visible':regionVisible != 'artistas'}">
-                <app-album #albumComponent></app-album>
+                <app-album (onAgregarCancionPlaylist)="cargarPlaylists($event)" #albumComponent></app-album>
             </div>
             <!--vista-artista-->
 

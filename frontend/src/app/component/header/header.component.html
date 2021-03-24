@@ -20,7 +20,7 @@
       </button>
     </div>
     <div class="modal-body">
-        <input class="form-control" type="text" placeholder="Nombre del playlist">
+        <input [(ngModel)]="nombrePlaylist" class="form-control" type="text" placeholder="Nombre del playlist">
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">Cerrar</button>

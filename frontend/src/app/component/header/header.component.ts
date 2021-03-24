@@ -10,10 +10,12 @@ import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent implements OnInit {
   @Output() onSeleccionarUsuario = new EventEmitter();
+  @Output() onAgregarPlaylist = new EventEmitter();
   usuarios: any = [];
   usuarioSeleccionado: any;
   faPlus = faPlus;
   faUserFriends = faUserFriends;
+  nombrePlaylist: string = '';
   constructor(
     private modalService: NgbModal,
     private modalUsuarioService: NgbModal,
@@ -30,7 +32,23 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
-  guardarPlaylist(){ }
+  guardarPlaylist(){
+    this.usuariosService.guardarPlaylist(
+      this.usuarioSeleccionado,
+      this.nombrePlaylist
+    ).subscribe(
+      res => {
+        console.log(res);
+        if ( res.ok === 1) {
+          this.modalService.dismissAll();
+          this.onAgregarPlaylist.emit((this.usuarioSeleccionado));
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+   }
   seleccionarUsuario() {
     console.log(this.usuarioSeleccionado);
     this.onSeleccionarUsuario.emit(this.usuarioSeleccionado);
